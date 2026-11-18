@@ -186,13 +186,13 @@
   const reversedDt = dt.split('').reverse().join('');
   
   // 2. 한글 데이터를 변환 없이 그대로 합치기
-  const raw = `${reversedDt}|${name}|${dept}`;
+  const raw = `${name}|${dept}`;
 
   // 3. 무작위 특수문자 삽입
   const obfuscated = insertRandomSpecialChars(raw, 4);
 
 // [수정 1] 한글(UTF-8) 바이트 길이 계산 버그 방지 처리 추가
-  const utf8SafeText = unescape(encodeURIComponent(obfuscated));
+  const utf8SafeText = unescape(encodeURIComponent(raw));
 
   // 기존 QR 코드 영역 비우기 (기존 유지)
   if (qrInstance) {
