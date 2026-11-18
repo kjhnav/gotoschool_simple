@@ -199,14 +199,13 @@
     qrContainer.innerHTML = '';
   }
 
-  // [수정 2] 변환된 텍스트 전달 및 오류 복원 등급(correctLevel)을 M으로 조정
+  // 2. 원본 한글 문자열(raw)을 그대로 전달하고, 오류 복원 등급만 L로 낮춤
   qrInstance = new QRCode(qrContainer, {
-    text: utf8SafeText,
+    text: raw,
     width: 240,
     height: 240,
-    correctLevel: QRCode.CorrectLevel.M
+    correctLevel: QRCode.CorrectLevel.L // 수용량을 최대로 늘려 긴 한글도 에러 없이 생성
   });
-
 
   if (qrTimer) clearTimeout(qrTimer);
   statusEl.textContent = '이 QR은 10초 동안만 유효합니다.'; // 시간은 편의에 따라 조절하세요
