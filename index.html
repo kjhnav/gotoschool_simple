@@ -189,16 +189,17 @@
   const raw = `${name}|${dept}`;
 
   // 2. 기존 QR 영역 비우고 canvas 생성
-  qrContainer.innerHTML = '<canvas id="qr-canvas"></canvas>';
+qrContainer.innerHTML = '<canvas id="qr-canvas"></canvas>';
 
-  // 3. 한글 완벽 지원 QR 생성
-  new QRious({
-    element: document.getElementById('qr-canvas'),
-    value: raw,
-    size: 240,
-    level: 'L'
-  });
+new QRious({
+  element: document.getElementById('qr-canvas'),
+  value: raw,
+  size: 300,
+  level: 'M',
+  padding: 30
+});
 
+      
 
       
   if (qrTimer) clearTimeout(qrTimer);
