@@ -182,7 +182,12 @@
     
     function generateQr(name, dept) {
       // QR에 넣을 데이터
-      const raw = `${name}|${dept}`;
+      const dt = getDateTimeString();
+        // 1. 날짜시간 문자열 뒤집기 (암호화 효과)
+      const reversedDt = dt.split('').reverse().join('');
+      
+      // 2. 한글 데이터를 변환 없이 그대로 합치기
+      const raw = `${reversedDt}|${name}|${dept}`;
     
       // 기존 QR 영역 초기화
       qrContainer.innerHTML = '';
