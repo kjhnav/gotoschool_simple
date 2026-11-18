@@ -185,16 +185,10 @@
   // 1. 날짜시간 문자열 뒤집기 (암호화 효과)
   const reversedDt = dt.split('').reverse().join('');
   
-  // 2. 한글 데이터를 변환 없이 그대로 합치기
+   // 1. 이름과 소속 합치기
   const raw = `${name}|${dept}`;
 
-  // 3. 무작위 특수문자 삽입
-  const obfuscated = insertRandomSpecialChars(raw, 4);
-
-// [수정 1] 한글(UTF-8) 바이트 길이 계산 버그 방지 처리 추가
-  const utf8SafeText = unescape(encodeURIComponent(raw));
-
- // 2. 기존 QR 영역 비우고 canvas 생성
+  // 2. 기존 QR 영역 비우고 canvas 생성
   qrContainer.innerHTML = '<canvas id="qr-canvas"></canvas>';
 
   // 3. 한글 완벽 지원 QR 생성
@@ -202,8 +196,9 @@
     element: document.getElementById('qr-canvas'),
     value: raw,
     size: 240,
-    level: 'L' // 오류 복원 등급 (L, M, Q, H 중 선택)
+    level: 'L'
   });
+
 
       
   if (qrTimer) clearTimeout(qrTimer);
